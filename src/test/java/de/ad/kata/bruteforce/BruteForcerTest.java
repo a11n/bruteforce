@@ -2,16 +2,23 @@ package de.ad.kata.bruteforce;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class BruteForcerTest {
   @Test
-  public void testComputeNextCombination() throws Exception {
-    BruteForcer bruteForcer = new BruteForcer();
-    
-    String actual = bruteForcer.computeNextCombination();
-    String expected = "0";  
-  
-    assertEquals(expected, actual);
+  public void testAlphaNumericBruteForcer() throws Exception {
+    BruteForcer bruteForcer = BruteForcer.createAlphaNumericBruteForcer();
+
+    long then = System.currentTimeMillis();
+
+    int combinationCount = 0;
+    String actual = null;
+    while (!"Andre".equals(actual)) {
+      actual = bruteForcer.computeNextCombination();
+      combinationCount++;
+    }
+
+    long now = System.currentTimeMillis();
+
+    System.out.println(String.format("Found '%s'. Tried %d combination(s). Took %ss", actual, combinationCount,
+        (now - then) / 1000));
   }
 }
